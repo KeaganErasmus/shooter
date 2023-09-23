@@ -3,12 +3,12 @@ from bullet import Bullet
 
 
 class Player:
-    def __init__(self, width, height, speed, x, y, surface):
-        self.width = width
-        self.height = height
-        self.speed = speed
-        self.x = x
-        self.y = y
+    def __init__(self, surface):
+        self.width = 30
+        self.height = 30
+        self.speed = 500
+        self.x = 400
+        self.y = 300
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.surface = surface
 

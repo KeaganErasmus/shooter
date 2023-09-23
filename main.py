@@ -5,8 +5,8 @@ from enemy import Enemy
 
 screen = pygame.display.set_mode((800, 600))
 
-player = Player(30, 30, 500, 400, 300, screen)
-enemy = Enemy(30, 30, 250, 100)
+player = Player(screen)
+enemy = Enemy(screen, player, 100, 100)
 
 
 def update(dt):

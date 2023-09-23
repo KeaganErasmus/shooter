@@ -1,16 +1,32 @@
+import math
+
 import pygame
 
 
 class Enemy:
-    def __init__(self, width, height, x, y):
-        self.width = width
-        self.height = height
+    def __init__(self, surface, player, x, y):
+        self.width = 30
+        self.height = 30
         self.x = x
         self.y = y
+        self.speed = 150
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.player = player
 
     def draw_enemy(self, surface):
         pygame.draw.rect(surface, (255, 0, 0), self.rect)
 
     def update_enemy(self, dt):
+        dx = self.player.x - self.x
+        dy = self.player.y - self.y
+
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+
+        if distance != 0:
+            dx /= distance
+            dy /= distance
+
+        self.x += dx * self.speed * dt
+        self.y += dy * self.speed * dt
+
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
