@@ -19,6 +19,7 @@ class Player:
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         keys = pygame.key.get_pressed()
 
+        self.check_bounds()
         self.player_movement(keys, dt)
         self.player_shoot(keys, dt)
 
@@ -68,3 +69,13 @@ class Player:
             self.x -= self.speed * dt
         if keys[pygame.K_d]:
             self.x += self.speed * dt
+
+    def check_bounds(self):
+        if self.x + self.width >= self.surface.get_width():
+            self.x = self.surface.get_width() - self.width
+        if self.x < 0:
+            self.x = 0
+        if self.y + self.height > self.surface.get_height():
+            self.y = self.surface.get_height() - self.height
+        if self.y < 0:
+            self.y = 0
