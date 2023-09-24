@@ -11,24 +11,24 @@ class Player:
         self.y = 300
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.surface = surface
-
         self.fire_rate = 500
         self.last_shot = 0
         self.bullets = []
 
     def update_player(self, dt):
-        current_time = pygame.time.get_ticks()
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_w]:
-            self.y -= self.speed * dt
-        if keys[pygame.K_s]:
-            self.y += self.speed * dt
-        if keys[pygame.K_a]:
-            self.x -= self.speed * dt
-        if keys[pygame.K_d]:
-            self.x += self.speed * dt
 
+        self.player_movement(keys, dt)
+        self.player_shoot(keys, dt)
+
+    def draw_player(self):
+        for shots in self.bullets:
+            shots.draw_bullet(self.surface)
+        pygame.draw.rect(self.surface, (0, 255, 0), self.rect)
+
+    def player_shoot(self, keys, dt):
+        current_time = pygame.time.get_ticks()
         if keys[pygame.K_RIGHT] and current_time - self.last_shot >= self.fire_rate:
             bullet = Bullet(10, 10, 1000, self.x + 5, self.y + 10, "right")
             self.bullets.append(bullet)
@@ -59,7 +59,12 @@ class Player:
                     or shots.y < 0):
                 self.bullets.remove(shots)
 
-    def draw_player(self):
-        for shots in self.bullets:
-            shots.draw_bullet(self.surface)
-        pygame.draw.rect(self.surface, (0, 255, 0), self.rect)
+    def player_movement(self, keys, dt):
+        if keys[pygame.K_w]:
+            self.y -= self.speed * dt
+        if keys[pygame.K_s]:
+            self.y += self.speed * dt
+        if keys[pygame.K_a]:
+            self.x -= self.speed * dt
+        if keys[pygame.K_d]:
+            self.x += self.speed * dt

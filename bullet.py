@@ -25,4 +25,3 @@ class Bullet:
 
     def draw_bullet(self, surface):
         pygame.draw.rect(surface, self.color, self.rect)
-
