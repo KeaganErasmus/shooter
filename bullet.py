@@ -11,6 +11,7 @@ class Bullet:
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         self.color = (0, 0, 255)
         self.direction = direction
+        self.is_active = True
 
     def update_bullet(self, dt):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)

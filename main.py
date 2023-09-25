@@ -7,14 +7,17 @@ from enemy import Enemy
 screen = pygame.display.set_mode((800, 600))
 
 player = Player(screen)
+# enemy = Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets)
+
 enemies = []
 enemy_count = 5
 for i in range(enemy_count):
-    enemies.append(Enemy(screen, player, random.randint(0, 800), random.randint(0, 600) + i))
+    enemies.append(Enemy(screen, player, random.randint(0, 800), random.randint(0, 600) + i, player.bullets))
 
 
 def update(dt):
     player.update_player(dt)
+    # enemy.update_enemy(dt)
     for enemy in enemies:
         enemy.update_enemy(dt)
 
@@ -22,8 +25,9 @@ def update(dt):
 def render(_screen):
     _screen.fill((255, 255, 255))
     player.draw_player()
+    # enemy.draw_enemy()
     for enemy in enemies:
-        enemy.draw_enemy(_screen)
+        enemy.draw_enemy()
 
 
 def main():
