@@ -17,7 +17,9 @@ class Enemy:
         self.is_active = True
 
     def draw_enemy(self):
-        pygame.draw.rect(self.surface, (255, 0, 0), self.rect)
+        self.check_hit()
+        if self.is_active:
+            pygame.draw.rect(self.surface, (255, 0, 0), self.rect)
 
     def update_enemy(self, dt):
         self.check_hit()
@@ -39,3 +41,5 @@ class Enemy:
     def check_hit(self):
         if self.rect.collidelistall(self.bullets):
             self.is_active = False
+
+
