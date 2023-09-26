@@ -14,7 +14,6 @@ class Player:
         self.fire_rate = 500
         self.last_shot = 0
         self.bullets = []
-        self.enemies = enemies
 
     def update_player(self, dt):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
