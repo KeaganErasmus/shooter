@@ -8,14 +8,14 @@ screen = pygame.display.set_mode((800, 600))
 enemies = []
 player = Player(screen)
 # enemy = Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets)
-enemy_count = 2
-for i in range(enemy_count):
-    enemies.append(Enemy(screen, player, random.randint(0, 800), random.randint(0, 600) + i, player.bullets))
 
+ENEMY_SPAWN_EVENT = pygame.USEREVENT + 1
+pygame.time.set_timer(ENEMY_SPAWN_EVENT, 2000)
 
 def update(dt):
     player.update_player(dt)
     # enemy.update_enemy(dt)
+    
     for enemy in enemies:
         enemy.update_enemy(dt)
 
@@ -40,6 +40,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == ENEMY_SPAWN_EVENT:
+                enemies.append(Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets))
 
         update(dt)
         render(screen)
