@@ -15,14 +15,16 @@ class Bullet:
 
     def update_bullet(self, dt):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
-        if self.direction == "right":
-            self.x += self.speed * dt
-        elif self.direction == "left":
-            self.x -= self.speed * dt
-        elif self.direction == "up":
-            self.y -= self.speed * dt
-        elif self.direction == "down":
-            self.y += self.speed * dt
+        if self.is_active:
+            if self.direction == "right":
+                self.x += self.speed * dt
+            elif self.direction == "left":
+                self.x -= self.speed * dt
+            elif self.direction == "up":
+                self.y -= self.speed * dt
+            elif self.direction == "down":
+                self.y += self.speed * dt
 
     def draw_bullet(self, surface):
-        pygame.draw.rect(surface, self.color, self.rect)
+        if self.is_active:
+            pygame.draw.rect(surface, self.color, self.rect)

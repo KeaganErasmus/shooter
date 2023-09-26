@@ -5,11 +5,9 @@ from player import Player
 from enemy import Enemy
 
 screen = pygame.display.set_mode((800, 600))
-
-player = Player(screen)
-# enemy = Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets)
-
 enemies = []
+player = Player(screen, enemies)
+# enemy = Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets)
 enemy_count = 2
 for i in range(enemy_count):
     enemies.append(Enemy(screen, player, random.randint(0, 800), random.randint(0, 600) + i, player.bullets))

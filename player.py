@@ -3,7 +3,7 @@ from bullet import Bullet
 
 
 class Player:
-    def __init__(self, surface):
+    def __init__(self, surface, enemies):
         self.width = 30
         self.height = 30
         self.speed = 500
@@ -14,6 +14,7 @@ class Player:
         self.fire_rate = 500
         self.last_shot = 0
         self.bullets = []
+        self.enemies = enemies
 
     def update_player(self, dt):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
@@ -58,6 +59,9 @@ class Player:
                     or shots.x < 0
                     or shots.y > self.surface.get_height()
                     or shots.y < 0):
+                self.bullets.remove(shots)
+
+            if not shots.is_active:
                 self.bullets.remove(shots)
 
     def player_movement(self, keys, dt):

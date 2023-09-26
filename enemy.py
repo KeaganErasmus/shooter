@@ -41,5 +41,5 @@ class Enemy:
     def check_hit(self):
         if self.rect.collidelistall(self.bullets):
             self.is_active = False
-
-
+            for bullet in self.bullets:
+                bullet.is_active = False
