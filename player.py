@@ -3,7 +3,7 @@ from bullet import Bullet
 
 
 class Player:
-    def __init__(self, surface, enemies):
+    def __init__(self, surface):
         self.width = 30
         self.height = 30
         self.speed = 500

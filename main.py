@@ -6,7 +6,7 @@ from enemy import Enemy
 
 screen = pygame.display.set_mode((800, 600))
 enemies = []
-player = Player(screen, enemies)
+player = Player(screen)
 # enemy = Enemy(screen, player, random.randint(0, 800), random.randint(0, 600), player.bullets)
 enemy_count = 2
 for i in range(enemy_count):
@@ -28,7 +28,7 @@ def render(_screen):
         enemy.draw_enemy()
         if not enemy.is_active:
             enemies.remove(enemy)
-            
+
 
 def main():
     pygame.init()
