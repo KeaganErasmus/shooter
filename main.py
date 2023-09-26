@@ -28,7 +28,7 @@ def render(_screen):
         enemy.draw_enemy()
         if not enemy.is_active:
             enemies.remove(enemy)
-
+            
 
 def main():
     pygame.init()

@@ -15,6 +15,7 @@ class Enemy:
         self.bullets = bullets
         self.surface = surface
         self.is_active = True
+        self.health = 30
 
     def draw_enemy(self):
         self.check_hit()
@@ -40,6 +41,10 @@ class Enemy:
 
     def check_hit(self):
         if self.rect.collidelistall(self.bullets):
-            self.is_active = False
+            self.health -= 10
+            print(self.health)
             for bullet in self.bullets:
                 bullet.is_active = False
+
+        if self.health <= 0:
+            self.is_active = False
